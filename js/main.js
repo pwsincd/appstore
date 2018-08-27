@@ -1,6 +1,3 @@
-//written by jaamesfor the wiiubru appstore
-//Modified and reworked by pwsincd & vgmoose for the switchbru appstore
-
 var appList = {
         packages: []
     },
@@ -20,7 +17,7 @@ var appList = {
         }
     }(),
     getFormatedDesc = function(e) {
-        return e = e.replace(/^\s*\\n|\\n\s*$/g, ""), e = e.replace(/\\t/g, "&#9;"), e = "<p>" + e.replace(/\\n\s*\\n/g, "</p><p>") + "</p>", e = e.replace(/<p>\s*<\/p>/g, ""), e = e.replace(/\\n/g, "<br/>"), e = e.replace(/(<script|<iframe).*?(\/script>|\/iframe>)/g, "")
+        return e = e.replace(/\b(?:https?|ftp):\/\/[a-z0-9-+&@#\/%?=~_|!:,.;]*[a-z0-9-+&@#\/%=~_|]/gim, '<a href="$&">$&</a>'), e = e.replace(/^\s*\\n|\\n\s*$/g, ""), e = e.replace(/\\t/g, "&#9;"), e = "<p>" + e.replace(/\\n\s*\\n/g, "</p><p>") + "</p>", e = e.replace(/<p>\s*<\/p>/g, ""), e = e.replace(/\\n/g, "<br/>"), e = e.replace(/(<script|<iframe).*?(\/script>|\/iframe>)/g, "")
     },
     appGridComponent = Vue.component("app-grid", {
         template: "#app-grid-template",
@@ -99,6 +96,7 @@ var appList = {
         template: "#app-page-template",
         data: function() {
             return {
+                change: "",
                 formatted_desc: "",
                 download_link: ""
             }
@@ -111,7 +109,7 @@ var appList = {
                         return a && (t.scr_src = config.getAppScreenURL(t.name)), a
                     }),
                     a = t.length > 0 && t[0];
-                return a && (this.$data.formatted_desc = getFormatedDesc(a.details), this.$data.download_link = config.getAppDownloadURL(a.name, a.binary)), a
+                return a && (this.$data.change = getFormatedDesc(a.changelog), this.$data.formatted_desc = getFormatedDesc(a.details), this.$data.download_link = config.getAppDownloadURL(a.name, a.binary)), a
             }
         }
     },
@@ -164,3 +162,4 @@ var appList = {
             }.bind(this))
         }
     });
+
