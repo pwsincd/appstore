@@ -1,212 +1,249 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <link rel="icon" href="https:www.switchbru.com/wip/images/favicon.ico" type="image/x-icon">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Switch Homebrew Appstore</title>
-  <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
-  <META HTTP-EQUIV="Expires" CONTENT="-1">
-  <link rel="stylesheet" href="css/main.css">
-  <link href='https://fonts.googleapis.com/css?family=Product+Sans' rel='stylesheet' type='text/css'>
-  <script defer src="https://use.fontawesome.com/releases/v5.0.2/js/all.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
-  <script>
-    WebFont.load({
-      google: {
-        families: ["Open Sans:400,700"]
-      }
-    });
-  </script>
+	<meta charset="utf-8">
+	<link rel="icon" href="https:www.switchbru.com/wip/images/favicon.ico" type="image/x-icon">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Switch Homebrew Appstore</title>
+	<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+	<META HTTP-EQUIV="Expires" CONTENT="-1">
+	<link rel="stylesheet" href="css/main.css">
+	<!--<link href='https://fonts.googleapis.com/css?family=Product+Sans' rel='stylesheet' type='text/css'>-->
+	<link href="https://fonts.googleapis.com/css?family=Questrial" rel="stylesheet">
+	<script defer src="https://use.fontawesome.com/releases/v5.0.2/js/all.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+	<script>
+		WebFont.load({
+			google: {
+				families: ["Open Sans:400,700"]
+			}
+		});
+	</script>
+	<script src="js/libs.min.js" type="text/javascript"></script>
+	<script src ="https://form.jotformeu.com/static/feedback2.js" type="text/javascript"></script><script type="text/javascript"> var JFL_80505830339354 = new JotformFeedback({ formId: '80505830339354', base: 'https://form.jotformeu.com/', windowTitle: 'Switch Homebrew Appstore Submission', background: '#000000', fontColor: '#0fbbc4', type: 'false', height: 500, width: 700, openOnLoad: false }); </script>
+	<!-- end app submission script -->
 
 </head>
 <body>
-  <div id="app">
-    <!-- navbar -->
-    <nav class="navBar">
-      <a class="mobileNavToggle" v-on:click="toggleSideMenu"><i class="fa fa-bars"></i> Menu</a>
-      <ul class="navBar__links">
-          <li>
-            <a href="https://kiwiirc.com/client/irc.kiwiirc.com/switchbru"><i class="far fa-comments"></i> IRC</a>
-          </li>
-          <li>
-            <a href="https://discord.gg/F2PKpEj"><i class="fab fa-discord"></i> Discord</a>
-          </li>
-          <li>
-            <a href="https://twitter.com/WiiUbru"><i class="fab fa-twitter-square"></i> Follow Us</a>
-          </li>
-          <li>
-            <a href="http://www.switchbru.com/dns"><i class="fas fa-server"></i> DNS</a>
-          </li>
-        </ul>
-      </nav>
-      <!-- / navbar -->
-      <!-- side menu -->
-      <div :class="['sideMenu', sideMenuIsOpen ? 'is-open' : '']">
-        <div class="banner"><img class="logo" src="images/icon.png"></i> Switch Appstore</div>
-        <ul class="categoryList">
-            <li class="category cat">
-            <router-link to="/search/">
-              <span class="category__icon"><i class="fas fa-search"></i></span>
-              <span class="category__title">search</span>
-            </router-link>
-          </li>
-          <li class="category cat">
-            <router-link to="/" exact>
-              <span class="category__icon"><i class="fas fa-home"></i></span>
-              <span class="category__title">Home</span>
-            </router-link>
-          </li>
+	<div id="app">
+		<!-- navbar -->
+		<nav class="navBar">
+			<a class="mobileNavToggle" v-on:click="toggleSideMenu"><i class="fa fa-bars"></i> Menu</a>
+			<ul class="navBar__links">
+				<li>
+					<a href="https://kiwiirc.com/client/irc.kiwiirc.com/switchbru"><i class="far fa-comments"></i> IRC</a>
+				</li>
+				<li>
+					<a href="https://discord.gg/F2PKpEj"><i class="fab fa-discord"></i> Discord</a>
+				</li>
+				<li>
+					<a href="https://twitter.com/WiiUbru"><i class="fab fa-twitter-square"></i> Follow Us</a>
+				</li>
+				<li>
+					<a href="http://www.switchbru.com/dns"><i class="fas fa-server"></i> DNS</a>
+				</li>
+          <!--<li>
+            <a class="lightbox-80505830339354"><i class="fa fa-paper-plane"></i> Submit</a>
+        </li>-->
+    </ul>
+</nav>
+<!-- / navbar -->
+<!-- side menu -->
+<div :class="['sideMenu', sideMenuIsOpen ? 'is-open' : '']">
+	<div class="banner"><img class="logo" src="images/icon.png"></i> Switch Appstore</div>
+	<ul class="categoryList">
+		<li class="category cat">
+			<router-link to="/search/">
+				<span class="category__icon"><i class="fas fa-search"></i></span>
+				<span class="category__title">search</span>
+			</router-link>
+		</li>
+		<li class="category cat">
+			<router-link to="/" exact>
+				<span class="category__icon"><i class="fas fa-home"></i></span>
+				<span class="category__title">Home</span>
+			</router-link>
+		</li>
 
-          <li v-for="category in categories" :class="['category', 'cat']">
-            <router-link :to="'/category/' + category.id">
-              <span class="category__icon"><i :class="['fas', category.icon]"></i></span>
-              <span class="category__title">{{category.id}}</span>
-            </router-link>
-          </li>
-        </ul>
-      </div>
-      <!-- / side menu -->
-      <!-- main page content -->
-      <div class="main">
-        <router-view></router-view>
-      </div>
-      <div class="footer">
-        <p>Credits : <a href="https://github.com/pwsincd">Pwsincd</a>, <a href="https://github.com/vgmoose/">Vgmoose.</a>, <a href="https://www.behance.net/RMZK">Roman</a>, <a href="https://github.com/jaames">Jaames</a>.</p>
-      </div>
-      <!-- / main page content -->
-    </div>
-    <!-- front page template -->
-    <script type="text/x-template" id="front-page-template">
-      <div>
-        <app-grid v-for="category in appList" v-bind:title="category.title" v-bind:items="category.items" showButtons="true"></app-grid>
-      </div>
-    </script>
-    <!-- / front page template -->
+		<li v-for="category in categories" :class="['category', 'cat']">
+			<router-link :to="'/category/' + category.id">
+				<span class="category__icon"><i :class="['fas', category.icon]"></i></span>
+				<span class="category__title">{{category.id}}</span>
+			</router-link>
+		</li>
+	</ul>
+</div>
+<!-- / side menu -->
+<!-- main page content -->
+<div class="main">
+	<router-view></router-view>
+	<div class="ads">
+		<!--pwsincd ad-->
+		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+		<!-- switch Appstore -->
+		<ins class="adsbygoogle ads"
+		style="display:block"
+		data-ad-client="ca-pub-7623664678937879"
+		data-ad-slot="6161516658"
+		data-ad-format="auto"></ins>
+		<script>
 
-    <!-- category page template -->
-    <script type="text/x-template" id="category-page-template">
-      <app-grid v-bind:title="appList.title" v-bind:items="appList.items"></app-grid>
-    </script>
-    <!-- / category page template -->
+			console.log(window.location.href)
+			if (window.location.href !== "https://www.switchbru.com/appstore/#/app/RetroNX")
+				(adsbygoogle = window.adsbygoogle || []).push({});
 
-    <!-- search page template -->
-    <script type="text/x-template" id="search-page-template">
-      <div>
-        <form class="searchField" v-on:submit="submitQuery">
-          <div class="searchField__input-wrap">
-            <input action="" method="" type="text" v-model="searchQuery" class="searchField__input" placeholder="find your app....">
-          </div>
-          <div class="searchField__button-wrap">
-            <button type="submit" class="searchField__button button button--search">Search</button>
-          </div>
-        </form>
-        <app-grid v-bind:items="appList.items"></app-grid>
-      </div>
-    </script>
-    <!-- / search page template -->
+		</script>
+	</div>
+</div>
+<div class="footer">
+	<p>Credits : <a href="https://github.com/pwsincd">Pwsincd</a>, <a href="https://github.com/vgmoose/">Vgmoose.</a>, <a href="https://www.behance.net/RMZK">Roman</a>, <a href="https://github.com/jaames">Jaames</a>.</p>
+</div>
+<!-- / main page content -->
+</div>
+<!-- front page template -->
+<script type="text/x-template" id="front-page-template">
+	<div>
+		<app-grid v-for="category in appList" v-bind:title="category.title" v-bind:items="category.items" showButtons="true"></app-grid>
+	</div>
+</script>
+<!-- / front page template -->
 
-    <!-- app page template -->
-    <script type="text/x-template" id="app-page-template">
-      <div class="card appPage" v-show="app">
-          <h3 class="app__title">{{app.title || app.name}}</h3>
-        <img class="app__image" v-bind:src="app.scr_src" onerror="this.src='images/noscreen.png'"></img>
-        <div class="leftSection">
-          
-          <div class="app__actionWrap">
-            <div class="app__databody">
-              <div class="app__datatitle">Additional information</div>
-              <div class="app__data">Version: {{app.version || "N/A"}}</div>
-              <div class="app__data">Size: {{app.filesize || "N/A"}} Kbs</div>
-              <div class="app__data">Updated: {{app.updated || "N/A"}}</div>
-              <div class="app__data">ZIP md5: {{app.md5 || "N/A"}}</div>
-             <!-- <div class="app__datatitle">Weekly Download Stats</div>
-              <div class="app__data">Web Downloads: {{app.web_hits || "N/A"}}</div>
-              <div class="app__data">App Downloads: {{app.app_hits || "N/A"}}</div>-->
-            </div>  
-          </div>
-        </div>
-        <div class="rightSection">        
-          <div class="app__desc">{{app.description}}</div>
-          <div class="app__authors">Author : {{app.author}}</div>
-         <!-- <span :class="['app__type', 'app__type--' + app.type]">{{app.type || "nro"}}</span>-->        
-          <div class="app__longDesc" v-html="formatted_desc"></div>
-        </div>
-        <!--buttons-->
-        <div class="app__action">
-          <a v-bind:href="download_link" v-bind:download="app.name + '.zip'" class="button button--block button--secondary">Download</a>
-        </div>
-        <div class="app__action">
-          <a v-bind:href="app.url" target="_blank" rel="noopener noreferrer" class="button button--block button--secondary">Source</a>
-        </div>
-        <!--/buttons-->
-      </div>
-    </script>
-    <!-- / app page template -->
+<!-- category page template -->
+<script type="text/x-template" id="category-page-template">
+	<app-grid v-bind:title="appList.title" v-bind:items="appList.items"></app-grid>
+</script>
+<!-- / category page template -->
 
-    <!-- app grid template -->
-    <script type="text/x-template" id="app-grid-template">
-      <div v-bind:class="['category', title ? 'category--' + title : '']">
-        <div v-if="title" class="appGridHead">
-          <router-link :to="'/category/' + title">
-            <a class="appGridHead__title">{{title}}</a>
-          </router-link>
-          <router-link v-if="showButtons" :to="'/category/' + title">
-            <a class="button appGridHead__button">See more</a>
-          </router-link>
-        </div>
-        <ul class="appGrid">
-          <li v-for="app in items" class="appGrid__item">
-            <router-link :to="'/app/' + app.name">
-              <a class="card card--app">
-                <img class="app__image" v-bind:src="app.img_src" onerror="this.src='images/404.png'">
-                <div class="card__head">{{app.title || app.name}}</div>
-                <div class="card__body">
-                 <div class="app__desc">{{app.version}}</div>
-                 <div class="app__author">{{app.author}}</div>
-               </div>
-             </a>
-           </router-link>
-         </li>
-       </ul>
-     </div>
-   </script>
-   <!-- / app grid template -->
+<!-- search page template -->
+<script type="text/x-template" id="search-page-template">
+	<div>
+		<form class="searchField" v-on:submit="submitQuery">
+			<div class="searchField__input-wrap">
+				<input action="" method="" type="text" v-model="searchQuery" class="searchField__input" placeholder="find your app....">
+			</div>
+			<div class="searchField__button-wrap">
+				<button type="submit" class="searchField__button button button--search">Search</button>
+			</div>
+		</form>
+		<app-grid v-bind:items="appList.items"></app-grid>
+	</div>
+</script>
+<!-- / search page template -->
 
-   <!-- config -->
-   <script type="text/javascript">
-    var config = {
-      categories: [
-      {
-        id: "loaders",
-        json_id: "loader",
-        icon: "fa-spinner"
-      },
-      {
-        id: "games",
-        json_id: "game",
-        icon: "fa-play"
-      },
-      {
-        id: "emulators",
-        json_id: "emu",
-        icon: "fa-gamepad"
-      },
-      {
-        id: "tools",
-        json_id: "tool",
-        icon: "fa-cog"
-      },
+<!-- app page template -->
+<script type="text/x-template" id="app-page-template">
+	<div class="card appPage" v-show="app">
+		<h3 class="app__title">{{app.title || app.name}}</h3>
+		<img class="app__image" v-bind:src="app.scr_src" onerror="this.src='images/noscreen.png'"></img>
+		<div class="leftSection">
+
+			<div class="app__actionWrap">
+				<div class="app__action">
+					<a v-bind:href="download_link" v-bind:download="app.directory + '.zip'" class="button button--block button--secondary">Download</a>
+				</div>
+				<div class="app__action">
+					<a v-bind:href="app.url" target="_blank" rel="noopener noreferrer" class="button button--block button--secondary">Source</a>
+				</div>
+
+				<div class="app__databody">
+					<div class="app__datatitle">Additional information</div>
+					<div class="app__data">Version: {{app.version || "N/A"}}</div>
+					<div class="app__data">Updated: {{app.updated || "N/A"}}</div>
+					<div class="app__data">Installed size: {{app.extracted || "N/A"}} Kbs</div>
+					<div class="app__data">ZIP size: {{app.filesize || "N/A"}} Kbs</div>
+					<div class="app__data">ZIP md5: {{app.md5 || "N/A"}}</div>
+					<div class="app__datatitle">Download Stats</div>
+					<div class="app__data">Web Downloads: {{app.web_dls || "N/A"}}</div>
+					<div class="app__data">App Downloads: {{app.app_dls || "N/A"}}</div>
+				</div>  
+			</div>
+		</div>
+		<div class="rightSection">        
+			<div class="app__desc">{{app.description}}</div>
+			<div class="app__authors">Author : {{app.author}}</div>
+			<!-- <span :class="['app__type', 'app__type--' + app.type]">{{app.type || "nro"}}</span>-->        
+			<div class="app__longDesc" v-html="formatted_desc"></div>
+			<div class="app__longDesc">Changelog :</div>	
+			<div class="app__longDesc" v-html="change"></div> 
+		</div>
+		<div>&nbsp;</div>
+		<div>&nbsp;</div>
+		<div>&nbsp;</div>
+		<!--buttons-->
+		<div class="app__action">
+			<a v-bind:href="download_link" v-bind:download="app.name + '.zip'" class="button button--block button--secondary">Download</a>
+		</div>
+		<div class="app__action">
+			<a v-bind:href="app.url" target="_blank" rel="noopener noreferrer" class="button button--block button--secondary">Source</a>
+		</div>
+		<!--/buttons-->
+	</div>
+</script>
+<!-- / app page template -->
+
+<!-- app grid template -->
+<script type="text/x-template" id="app-grid-template">
+	<div v-bind:class="['category', title ? 'category--' + title : '']">
+		<div v-if="title" class="appGridHead">
+			<router-link :to="'/category/' + title">
+				<a class="appGridHead__title">{{title}}</a>
+			</router-link>
+			<router-link v-if="showButtons" :to="'/category/' + title">
+				<a class="button appGridHead__button">See more</a>
+			</router-link>
+		</div>
+		<ul class="appGrid">
+			<li v-for="app in items" class="appGrid__item">
+				<router-link :to="'/app/' + app.name">
+					<a class="card card--app">
+						<img class="app__image" v-bind:src="app.img_src" onerror="this.src='images/404.png'">
+						<div class="card__head">{{app.title || app.name}}</div>
+						<div class="card__body">
+							<div class="app__desc">{{app.version}}</div>
+							<div class="app__author">{{app.author}}</div>
+						</div>
+					</a>
+				</router-link>
+			</li>
+		</ul>
+	</div>
+</script>
+<!-- / app grid template -->
+
+<!-- config -->
+<script type="text/javascript">
+	var config = {
+		categories: [
+		{
+			id: "loaders",
+			json_id: "loader",
+			icon: "fa-spinner"
+		},
+		{
+			id: "games",
+			json_id: "game",
+			icon: "fa-play"
+		},
+		{
+			id: "emulators",
+			json_id: "emu",
+			icon: "fa-gamepad"
+		},
+		{
+			id: "tools",
+			json_id: "tool",
+			icon: "fa-cog"
+		},
 //          {
 //            id: "system",
 //            json_id: "sys",
 //            icon: "fa-wrench"
 //          },
 {
-  id: "concepts",
-  json_id: "concept",
-  icon: "fa-puzzle-piece"
+	id: "concepts",
+	json_id: "concept",
+	icon: "fa-puzzle-piece"
 },
 //          {
 //            id: "PC-Tools",
@@ -216,17 +253,21 @@
 ],
 appListURL: "repo.json",
 getAppImageURL: function (directory) {
-  return "/appstore/packages/" + directory + "/icon.png"
+	return "/appstore/packages/" + directory + "/icon.png"
 },
 getAppScreenURL: function (directory) {
-  return "/appstore/packages/" + directory + "/screen.png"
+	return "/appstore/packages/" + directory + "/screen.png"
 },
 getAppDownloadURL: function (directory, binary) {
-  return "/appstore/zips/" + directory + ".zip"
+	if (directory == "Pickr")
+		return "https://github.com/BernardoGiordano/Pickr/releases";
+	if (directory == "2048")
+		return "https://github.com/BernardoGiordano/2048/releases";
+	return "/appstore/zips/" + directory + ".zip"
 },
 };
 </script>
 <!-- / config -->
-<script src="js/main.js"></script>
+<script src="js/expanded.js"></script>
 </body>
 </html>
